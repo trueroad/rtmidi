@@ -693,7 +693,9 @@ void MidiApi :: error( RtMidiError::Type type, std::string errorString )
   }
 
   if ( type == RtMidiError::WARNING ) {
+#if !defined(__RTMIDI_SILENCE_WARNINGS__)
     std::cerr << '\n' << errorString << "\n\n";
+#endif
   }
   else if ( type == RtMidiError::DEBUG_WARNING ) {
 #if defined(__RTMIDI_DEBUG__)
@@ -701,7 +703,7 @@ void MidiApi :: error( RtMidiError::Type type, std::string errorString )
 #endif
   }
   else {
-    std::cerr << '\n' << errorString << "\n\n";
+    // std::cerr << '\n' << errorString << "\n\n";
     throw RtMidiError( errorString, type );
   }
 }
@@ -3967,7 +3969,7 @@ void MidiInJack :: connect()
   // Initialize JACK client
   if (( data->client = jack_client_open( clientName.c_str(), JackNoStartServer, NULL )) == 0) {
     errorString_ = "MidiInJack::initialize: JACK server not running?";
-    error( RtMidiError::WARNING, errorString_ );
+    error( RtMidiError::DRIVER_ERROR, errorString_ );
     return;
   }
 
@@ -4180,7 +4182,7 @@ void MidiOutJack :: connect()
   // Initialize JACK client
   if ( ( data->client = jack_client_open( clientName.c_str(), JackNoStartServer, NULL ) ) == 0 ) {
     errorString_ = "MidiOutJack::initialize: JACK server not running?";
-    error( RtMidiError::WARNING, errorString_ );
+    error( RtMidiError::DRIVER_ERROR, errorString_ );
     return;
   }
 

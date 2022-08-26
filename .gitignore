@@ -26,6 +26,14 @@
 /.libs
 /tests/.deps
 /tests/.libs
+/tests/apinames
+/tests/cmidiin
+/tests/midiclock_in
+/tests/midiclock_out
+/tests/midiout
+/tests/midiprobe
+/tests/qmidiin
+/tests/sysextest
 
 # Prerequisites
 *.d

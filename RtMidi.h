@@ -609,7 +609,7 @@ class RTMIDI_DLL_PUBLIC MidiInApi : public MidiApi
     // Default constructor.
     RtMidiInData()
       : ignoreFlags(7), doInput(false), firstMessage(true), apiData(0), usingCallback(false),
-        userCallback(0), userData(0), continueSysex(false), bufferSize(1024), bufferCount(4) {}
+        userCallback(0), userData(0), continueSysex(false), bufferSize(8196), bufferCount(4) {}
   };
 
  protected:
